@@ -17,7 +17,7 @@ interface LambdaKeepActiveProps {
 }
 
 export class LambdaKeepActive extends Construct {
-  constructor(scope: Construct, id: string, props: LambdaKeepActiveProps) {
+  constructor(scope: Construct, id: string, props?: LambdaKeepActiveProps) {
     super(scope, id);
 
     const handler = new NodejsFunction(this, "LambdaKeepActive", {
@@ -30,7 +30,7 @@ export class LambdaKeepActive extends Construct {
       architecture: Architecture.ARM_64,
       environment: {
         NODE_ENV: "production",
-        ENABLE_LOGS: String(props.enableLogs ?? true),
+        ENABLE_LOGS: String(props?.enableLogs ?? true),
       },
     });
 

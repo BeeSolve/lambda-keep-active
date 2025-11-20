@@ -1,3 +1,7 @@
+# 1.0.1
+
+- make `LambdaKeepActive` props optional
+
 # 1.0.0
 
 - initial release
