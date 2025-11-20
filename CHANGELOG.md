@@ -1,3 +1,7 @@
+# 1.0.2
+
+- chore: upgrade dependencies
+
 # 1.0.1
 
 - make `LambdaKeepActive` props optional
