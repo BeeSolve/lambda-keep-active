@@ -1,3 +1,7 @@
+# 1.0.3
+
+- fix: make sure `__dirname` works in ESM
+
 # 1.0.2
 
 - chore: upgrade dependencies

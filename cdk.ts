@@ -6,6 +6,11 @@ import type { IFunction } from "aws-cdk-lib/aws-lambda";
 import { Architecture, Code, Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 interface LambdaKeepActiveProps {
   /**
