@@ -8,10 +8,11 @@ rmSync("dist", { force: true, recursive: true });
 
 await Bun.build({
   entrypoints: ["handler.ts"],
-  outdir: "dist",
+  outdir: "dist/lambda",
   target: "node",
   minify: true,
   splitting: true,
+  external: ["@aws-sdk"],
   sourcemap: "inline",
 });
 await Bun.build({
@@ -21,7 +22,7 @@ await Bun.build({
   minify: true,
   splitting: true,
   sourcemap: "inline",
-  external: ["aws-sdk", "aws-cdk", "aws-cdk-lib", "constructs"],
+  external: ["@aws-sdk", "aws-cdk", "aws-cdk-lib", "constructs"],
   plugins: [dts()],
 });
 

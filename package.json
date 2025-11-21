@@ -1,6 +1,6 @@
 {
   "name": "@beesolve/lambda-keep-active",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "prepublishOnly": "bun run build.ts"

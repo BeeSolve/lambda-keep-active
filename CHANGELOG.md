@@ -1,3 +1,8 @@
+# 1.0.4
+
+- fix: handler.js is build without @aws-sdk
+- fix: lambda handler in cdk only includes code for handler.js
+
 # 1.0.3
 
 - fix: make sure `__dirname` works in ESM

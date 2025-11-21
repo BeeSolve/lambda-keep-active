@@ -27,8 +27,8 @@ export class LambdaKeepActive extends Construct {
 
     const handler = new NodejsFunction(this, "LambdaKeepActive", {
       description: "LambdaKeepActive handler",
-      code: Code.fromAsset(`${__dirname}/handler.js`),
-      handler: "handler",
+      code: Code.fromAsset(`${__dirname}/lambda`),
+      handler: "handler.handler",
       memorySize: 128,
       timeout: Duration.minutes(5),
       runtime: Runtime.NODEJS_22_X,
