@@ -9,6 +9,9 @@ rmSync("dist", { force: true, recursive: true });
 await Bun.build({
   entrypoints: ["handler.ts"],
   outdir: "dist/lambda",
+  naming: {
+    entry: "[dir]/[name].mjs",
+  },
   target: "node",
   minify: true,
   splitting: true,

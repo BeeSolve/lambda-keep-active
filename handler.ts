@@ -44,5 +44,5 @@ export const handler = async (event: { action: "lambdaKeepActive" }) => {
         }
       }),
     );
-  } while (nextToken != null);
+  } while (nextToken != null && nextToken !== "");
 };

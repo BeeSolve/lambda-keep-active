@@ -1,3 +1,8 @@
+# 1.0.5
+
+- fix infinite loop over tagged resources
+- change handler extension to .mjs so Lambda can run it correctly as module
+
 # 1.0.4
 
 - fix: handler.js is build without @aws-sdk
