@@ -1,5 +1,7 @@
 # Lambda Keep Active
 
+[![View on Construct Hub](https://constructs.dev/badge?package=%40beesolve%2Flambda-keep-active)](https://constructs.dev/packages/@beesolve/lambda-keep-active)
+
 > A function becomes inactive when it has been idle long enough for Lambda to reclaim the external resources that were configured for it. When you try to invoke a function that is inactive, the invocation fails and Lambda sets the function to pending state until the function resources are recreated. If Lambda fails to recreate the resources, the function returns to the inactive state. You might need to resolve any errors and redeploy your function to restore it to the active state.
 > 
 > [Lambda function states](https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html)
