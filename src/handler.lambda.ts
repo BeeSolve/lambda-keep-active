@@ -1,28 +1,28 @@
-import { InvokeCommand, LambdaClient } from "@aws-sdk/client-lambda";
+import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import {
   GetResourcesCommand,
   ResourceGroupsTaggingAPIClient,
-} from "@aws-sdk/client-resource-groups-tagging-api";
-import { keepActivePing } from "./shared";
+} from '@aws-sdk/client-resource-groups-tagging-api';
+import { keepActivePing } from './shared';
 
 const lambdaClient = new LambdaClient();
 const taggingClient = new ResourceGroupsTaggingAPIClient();
-const enableLogs = process.env.ENABLE_LOGS === "true";
+const enableLogs = process.env.ENABLE_LOGS === 'true';
 
-export const handler = async (event: { action: "lambdaKeepActive" }) => {
+export const handler = async (event: { action: 'lambdaKeepActive' }) => {
   const { action } = event;
 
   if (action == null) return;
-  if (action !== "lambdaKeepActive") return;
+  if (action !== 'lambdaKeepActive') return;
 
   let nextToken: string | undefined;
   do {
     const { ResourceTagMappingList = [], PaginationToken } =
       await taggingClient.send(
         new GetResourcesCommand({
-          ResourceTypeFilters: ["lambda:function"],
+          ResourceTypeFilters: ['lambda:function'],
           ResourcesPerPage: 25,
-          TagFilters: [{ Key: "keepActive", Values: ["true"] }],
+          TagFilters: [{ Key: 'keepActive', Values: ['true'] }],
           PaginationToken: nextToken,
         }),
       );
@@ -34,7 +34,7 @@ export const handler = async (event: { action: "lambdaKeepActive" }) => {
         await lambdaClient.send(
           new InvokeCommand({
             FunctionName: resource.ResourceARN,
-            InvocationType: "Event",
+            InvocationType: 'Event',
             Payload: JSON.stringify({ [keepActivePing]: true }),
           }),
         );
@@ -44,5 +44,5 @@ export const handler = async (event: { action: "lambdaKeepActive" }) => {
         }
       }),
     );
-  } while (nextToken != null && nextToken !== "");
+  } while (nextToken != null && nextToken !== '');
 };

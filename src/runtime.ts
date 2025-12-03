@@ -1,4 +1,4 @@
-import { keepActivePing } from "./shared";
+import { keepActivePing } from './shared';
 
 interface KeptActiveOptions {
   /**
@@ -16,7 +16,7 @@ export function keptActive<Event = any, Context = any, Response = any>(
   return (event: Event, context: Context) => {
     if (
       event != null &&
-      typeof event === "object" &&
+      typeof event === 'object' &&
       keepActivePing in event &&
       event[keepActivePing] === true
     ) {
@@ -35,12 +35,12 @@ export function keptActiveFetch(
   options?: KeptActiveOptions,
 ) {
   return async (request: Request) => {
-    if (request.url === "https://lambda/") {
+    if (request.url === 'https://lambda/') {
       const event = await request.json();
 
       if (
         event != null &&
-        typeof event === "object" &&
+        typeof event === 'object' &&
         keepActivePing in event &&
         event[keepActivePing] === true
       ) {
