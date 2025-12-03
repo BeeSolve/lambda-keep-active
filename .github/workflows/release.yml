@@ -4,7 +4,7 @@ name: release
 on:
   push:
     branches:
-      - projen
+      - main
   workflow_dispatch: {}
 concurrency:
   group: ${{ github.workflow }}
@@ -34,8 +34,8 @@ jobs:
           bun-version: latest
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - name: release:projen
-        run: npx projen release:projen
+      - name: release
+        run: npx projen release
       - name: Check if version has already been tagged
         id: check_tag_exists
         run: |-

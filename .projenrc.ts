@@ -1,6 +1,5 @@
 import { awscdk } from 'projen';
 import { NodePackageManager, NpmAccess } from 'projen/lib/javascript';
-import { ReleaseTrigger } from 'projen/lib/release';
 
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'BeeSolve s.r.o.',
