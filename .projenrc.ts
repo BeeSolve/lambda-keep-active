@@ -31,7 +31,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   majorVersion: 1,
   npmAccess: NpmAccess.PUBLIC,
   releaseToNpm: true,
-  releaseTrigger: ReleaseTrigger.manual(),
 });
 
 project.package.addField('volta', {
