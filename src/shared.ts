@@ -1,1 +1,1 @@
-export const keepActivePing = '$$keepActivePing$$';
+export const keepActivePing = "$$keepActivePing$$";
