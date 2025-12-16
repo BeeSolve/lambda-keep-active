@@ -1,4 +1,11 @@
 
+## [1.2.0](https://github.com/beesolve/lambda-keep-active/compare/v1.1.2...v1.2.0) (2025-12-16)
+
+
+### Features
+
+* split runtime and cdk constructs ([b212fef](https://github.com/beesolve/lambda-keep-active/commit/b212fef5181c30c356ff679b40cafd17c438ae80))
+
 ## [1.1.2](https://github.com/beesolve/lambda-keep-active/compare/v1.1.1...v1.1.2) (2025-12-04)
 
 ## [1.1.1](https://github.com/beesolve/lambda-keep-active/compare/v1.1.0...v1.1.1) (2025-12-03)
