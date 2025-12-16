@@ -43,4 +43,15 @@ project.package.addField("volta", {
   node: "24.11.1",
 });
 
+project.package.addField("exports", {
+  ".": {
+    types: "./lib/index.d.ts",
+    import: "./lib/index.js",
+  },
+  "./runtime": {
+    types: "./lib/runtime.d.ts",
+    import: "./lib/runtime.js",
+  },
+});
+
 project.synth();
