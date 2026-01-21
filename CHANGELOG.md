@@ -1,4 +1,16 @@
 
+## [1.3.0](https://github.com/beesolve/lambda-keep-active/compare/v1.2.0...v1.3.0) (2026-01-21)
+
+
+### Features
+
+* add logs retention + upgrade dependencies ([5993ac0](https://github.com/beesolve/lambda-keep-active/commit/5993ac0ab493f7bbb52e0b55a59bba713d28848a))
+
+
+### Bug Fixes
+
+* generated API ([40b9da5](https://github.com/beesolve/lambda-keep-active/commit/40b9da51ca3bec2989fde22f9e2c161581a44b08))
+
 ## [1.2.0](https://github.com/beesolve/lambda-keep-active/compare/v1.1.2...v1.2.0) (2025-12-16)
 
 
