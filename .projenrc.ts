@@ -6,13 +6,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: "BeeSolve s.r.o.",
   authorAddress: "support@beesolve.com",
   authorOrganization: true,
-  cdkVersion: "2.231.0",
+  cdkVersion: "2.235.1",
   clobber: false,
-  constructsVersion: "10.4.3",
+  constructsVersion: "10.4.5",
   defaultReleaseBranch: "main",
   devDeps: [
-    "aws-cdk-lib@2.231.0",
-    "constructs@10.4.3",
+    "aws-cdk-lib@2.235.1",
+    "constructs@10.4.5",
     "@aws-sdk/client-lambda@^3.943.0",
     "@aws-sdk/client-resource-groups-tagging-api@^3.943.0",
     "yaml@^2.8.1",
@@ -40,7 +40,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 project.package.addField("volta", {
-  node: "24.11.1",
+  node: "25.4.0",
 });
 
 project.package.addField("exports", {

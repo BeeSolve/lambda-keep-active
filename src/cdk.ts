@@ -1,9 +1,10 @@
-import { Duration, Tags } from "aws-cdk-lib";
+import { Duration, RemovalPolicy, Tags } from "aws-cdk-lib";
 import { Rule, RuleTargetInput, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import type { IFunction } from "aws-cdk-lib/aws-lambda";
 import { Architecture } from "aws-cdk-lib/aws-lambda";
+import { LogGroup, LogGroupProps, RetentionDays } from "aws-cdk-lib/aws-logs";
 import { Construct } from "constructs";
 import { HandlerFunction } from "./handler-function";
 
@@ -14,10 +15,21 @@ export interface LambdaKeepActiveProps {
    * @default true
    */
   readonly enableLogs?: boolean;
+  /**
+   * Adjusts logging for SQS handler.
+   *
+   * @default
+   *
+   * {
+   *   removalPolicy: RemovalPolicy.DESTROY,
+   *   retention: RetentionDays.TWO_WEEKS
+   * }
+   */
+  readonly logGroupProps?: LogGroupProps;
 }
 
 export class LambdaKeepActive extends Construct {
-  constructor(scope: Construct, id: string, props?: LambdaKeepActiveProps) {
+  constructor(scope: Construct, id: string, props: LambdaKeepActiveProps = {}) {
     super(scope, id);
 
     const handler = new HandlerFunction(this, "LambdaKeepActive", {
@@ -25,9 +37,14 @@ export class LambdaKeepActive extends Construct {
       memorySize: 128,
       timeout: Duration.minutes(5),
       architecture: Architecture.ARM_64,
+      logGroup: new LogGroup(this, "LambdaKeepActiveLogGroup", {
+        removalPolicy: RemovalPolicy.DESTROY,
+        retention: RetentionDays.TWO_WEEKS,
+        ...props.logGroupProps,
+      }),
       environment: {
         NODE_ENV: "production",
-        ENABLE_LOGS: String(props?.enableLogs ?? true),
+        ENABLE_LOGS: String(props.enableLogs ?? true),
       },
     });
 

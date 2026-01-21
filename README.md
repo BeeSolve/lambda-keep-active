@@ -39,7 +39,7 @@ For Node.js Lambda handlers you can use `keptActive` wrapper like this:
 
 ```ts
 // handler.ts
-import { keptActive } from "@beesolve/lambda-keep-active";
+import { keptActive } from "@beesolve/lambda-keep-active/runtime";
 
 export const handler = keptActive(async () => {
   // your handler code
@@ -50,7 +50,7 @@ For [Bun Lambda handlers](https://github.com/BeeSolve/lambda-bun-runtime) you ca
 
 ```ts
 // bunHandler.ts
-import { keptActiveFetch } from "@beesolve/lambda-keep-active";
+import { keptActiveFetch } from "@beesolve/lambda-keep-active/runtime";
 
 export default {
   fetch: keptActiveFetch(async (request: Request): Promise<Response> => {
