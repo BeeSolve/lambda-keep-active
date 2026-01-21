@@ -40,7 +40,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 project.package.addField("volta", {
-  node: "25.4.0",
+  node: "24.13.0",
 });
 
 project.package.addField("exports", {

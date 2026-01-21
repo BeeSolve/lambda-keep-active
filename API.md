@@ -145,6 +145,7 @@ const lambdaKeepActiveProps: LambdaKeepActiveProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@beesolve/lambda-keep-active.LambdaKeepActiveProps.property.enableLogs">enableLogs</a></code> | <code>boolean</code> | If disabled no logs are logged to CloudWatch. |
+| <code><a href="#@beesolve/lambda-keep-active.LambdaKeepActiveProps.property.logGroupProps">logGroupProps</a></code> | <code>aws-cdk-lib.aws_logs.LogGroupProps</code> | Adjusts logging for SQS handler. |
 
 ---
 
@@ -158,6 +159,19 @@ public readonly enableLogs: boolean;
 - *Default:* true
 
 If disabled no logs are logged to CloudWatch.
+
+---
+
+##### `logGroupProps`<sup>Optional</sup> <a name="logGroupProps" id="@beesolve/lambda-keep-active.LambdaKeepActiveProps.property.logGroupProps"></a>
+
+```typescript
+public readonly logGroupProps: LogGroupProps;
+```
+
+- *Type:* aws-cdk-lib.aws_logs.LogGroupProps
+- *Default:* {   removalPolicy: RemovalPolicy.DESTROY,   retention: RetentionDays.TWO_WEEKS }
+
+Adjusts logging for SQS handler.
 
 ---
 
