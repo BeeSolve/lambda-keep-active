@@ -29,6 +29,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   majorVersion: 1,
   name: "@beesolve/lambda-keep-active",
   npmAccess: NpmAccess.PUBLIC,
+  npmTrustedPublishing: true,
   packageManager: NodePackageManager.BUN,
   peerDeps: ["aws-cdk-lib@^2.231.0", "constructs@^10.4.3"],
   prettier: true,
