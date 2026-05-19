@@ -40,12 +40,22 @@ const project = new awscdk.AwsCdkConstructLibrary({
   vscode: false,
 });
 
-// publib's NPM_TRUSTED_PUBLISHER skips its own token check but doesn't write
-// npm auth — fetch the GitHub OIDC token and write it to .npmrc before publib runs.
 const releaseWorkflow = project.tryFindObjectFile(
   ".github/workflows/release.yml",
 );
 if (releaseWorkflow) {
+  // The release job uses bun but has no setup-node, so jsii falls back to the
+  // runner's pre-installed Node 20. Insert Node 24 setup before bun setup.
+  releaseWorkflow.patch(
+    JsonPatch.add("/jobs/release/steps/2", {
+      name: "Setup Node.js",
+      uses: "actions/setup-node@v6",
+      with: { "node-version": "24" },
+    }),
+  );
+
+  // publib's NPM_TRUSTED_PUBLISHER skips its own token check but doesn't write
+  // npm auth — fetch the GitHub OIDC token and write it to .npmrc before publib runs.
   releaseWorkflow.patch(
     JsonPatch.replace(
       "/jobs/release_npm/steps/10/run",
