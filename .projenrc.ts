@@ -1,4 +1,4 @@
-import { awscdk } from "projen";
+import { awscdk, JsonPatch } from "projen";
 import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { ReleaseTrigger } from "projen/lib/release";
 
@@ -39,6 +39,25 @@ const project = new awscdk.AwsCdkConstructLibrary({
   releaseTrigger: ReleaseTrigger.continuous(),
   vscode: false,
 });
+
+// publib's NPM_TRUSTED_PUBLISHER skips its own token check but doesn't write
+// npm auth — fetch the GitHub OIDC token and write it to .npmrc before publib runs.
+const releaseWorkflow = project.tryFindObjectFile(
+  ".github/workflows/release.yml",
+);
+if (releaseWorkflow) {
+  releaseWorkflow.patch(
+    JsonPatch.replace(
+      "/jobs/release_npm/steps/10/run",
+      [
+        `TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "\${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://registry.npmjs.org" | jq -r '.value')`,
+        `echo "::add-mask::$TOKEN"`,
+        `echo "//registry.npmjs.org/:_authToken=$TOKEN" >> ~/.npmrc`,
+        `npx -p publib@latest publib-npm`,
+      ].join("\n"),
+    ),
+  );
+}
 
 project.package.addField("volta", {
   node: "24.13.0",

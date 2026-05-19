@@ -137,4 +137,8 @@ jobs:
           NPM_CONFIG_PROVENANCE: "true"
           NPM_TRUSTED_PUBLISHER: "true"
           PUBLIB_DRYRUN: ${{ inputs.dry_run }}
-        run: npx -p publib@latest publib-npm
+        run: |-
+          TOKEN=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://registry.npmjs.org" | jq -r '.value')
+          echo "::add-mask::$TOKEN"
+          echo "//registry.npmjs.org/:_authToken=$TOKEN" >> ~/.npmrc
+          npx -p publib@latest publib-npm
