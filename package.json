@@ -3,7 +3,7 @@
   "description": "CDK construct which prevents your Lambda functions to transition into `inactive` state.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beesolve/lambda-keep-active"
+    "url": "git+https://github.com/BeeSolve/lambda-keep-active"
   },
   "scripts": {
     "build": "projen build",

@@ -33,7 +33,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   peerDeps: ["aws-cdk-lib@^2.231.0", "constructs@^10.4.3"],
   prettier: true,
   projenrcTs: true,
-  repositoryUrl: "https://github.com/beesolve/lambda-keep-active",
+  repositoryUrl: "git+https://github.com/BeeSolve/lambda-keep-active",
   releaseToNpm: true,
   releaseTrigger: ReleaseTrigger.manual(),
   vscode: false,
