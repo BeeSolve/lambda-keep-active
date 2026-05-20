@@ -1,4 +1,4 @@
-import { awscdk, JsonPatch } from "projen";
+import { awscdk, github, JsonPatch } from "projen";
 import { NodePackageManager, NpmAccess } from "projen/lib/javascript";
 import { ReleaseTrigger } from "projen/lib/release";
 
@@ -19,6 +19,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   description:
     "CDK construct which prevents your Lambda functions to transition into `inactive` state.",
+  githubOptions: {
+    projenCredentials: github.GithubCredentials.fromApp({
+      appIdSecret: "APP_ID",
+      privateKeySecret: "APP_PRIVATE_KEY",
+    }),
+  },
   jest: false,
   jsiiVersion: "~5.9.0",
   keywords: ["aws", "lambda", "active"],
